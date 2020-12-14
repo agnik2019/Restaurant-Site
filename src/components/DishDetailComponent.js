@@ -2,27 +2,22 @@
 import React, { Component } from 'react';
 import {Card,CardImg,CardBody, CardText,CardTitle} from 'reactstrap';
 
-class DishDetail extends Component {
-
-    constructor(props) {
-        super(props);
-    }
-    renderDish(dish)
+    function RenderDish({dish})
     {
             return (
                 <div className="col-12 col-md-5 m-1">
-                        <Card key={this.props.dish.id} >
-                            <CardImg width="100%" object src={this.props.dish.image} alt={this.props.dish.name} />
+                        <Card key={dish.id} >
+                            <CardImg width="100%" object src={dish.image} alt={dish.name} />
                             <CardBody>
-                                <CardTitle>{this.props.dish.name}</CardTitle>
-                                <CardText>{this.props.dish.description}</CardText>
+                                <CardTitle>{dish.name}</CardTitle>
+                                <CardText>{dish.description}</CardText>
                             </CardBody>
                         </Card>
                  </div>
             );
 
     }
-    renderComments(comments)
+    function RenderComments({comments})
     {
         if(comments != null)
             return (
@@ -47,13 +42,13 @@ class DishDetail extends Component {
     }
  
 
-    render() {
-        if(this.props.dish != null)
+    const DishDetail = (props) => {
+        if(props.dish != null)
             return (
                 <div className="container">
                     <div className="row">
-                        {this.renderDish(this.props.dish)}
-                        {this.renderComments(this.props.dish.comments)}
+                        <RenderDish dish={props.dish} />
+                        <RenderComments comments={props.dish.comments} />
                     </div>
                 </div>
             );
@@ -62,6 +57,5 @@ class DishDetail extends Component {
                 <div></div>
             )
     }
-}
 
 export default DishDetail;
