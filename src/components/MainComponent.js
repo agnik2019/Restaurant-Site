@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Navbar, NavbarBrand } from 'reactstrap';
 import Menu from './MenuComponent';
 import DishDetail from './DishDetailComponent';
+import About from "./AboutComponent";
 import { DISHES } from '../shared/dishes';
 import Home from './HomeComponent';
 import { COMMENTS } from '../shared/comments';
@@ -42,6 +43,10 @@ class Main extends Component {
             comments={this.state.comments.filter((comment) => comment.dishId === parseInt(match.params.dishId,10))} />
       );
     };
+
+    const AboutPage = () => {
+      return <About leaders={this.state.leaders} />;
+    };
     return (
         <div>
           <Header />
@@ -49,6 +54,7 @@ class Main extends Component {
               <Route path='/home' component={HomePage} />
               <Route exact path='/menu' component={() => <Menu dishes={this.state.dishes} />} />
               <Route exact path='/contactus' component={Contact} />
+              <Route path="/aboutus" component={AboutPage} />
               <Route path='/menu/:dishId' component={DishWithId} />
               <Redirect to="/home" />
           </Switch>
